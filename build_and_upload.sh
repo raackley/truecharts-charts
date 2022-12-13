@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 for CHART in $(ls charts/stable); do
     echo "#####"
@@ -17,7 +17,7 @@ for CHART in $(ls charts/stable); do
         echo "Building and uploading chart ${CHART} version ${VERSION} to ${REPO_URL}."
         helm dependency update charts/stable/${CHART}/
         helm package charts/stable/${CHART}/
-        echo curl --data-binary "@${CHART}-${VERSION}.tgz" ${REPO_URL}/api/charts -u ${USER}:${PASS}
+        curl --data-binary "@${CHART}-${VERSION}.tgz" ${REPO_URL}/api/charts -u ${USER}:${PASS}
     else
         echo "Chart ${CHART} version ${VERSION} already exists in ${REPO_URL}, skipping."
     fi
