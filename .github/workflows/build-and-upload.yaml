@@ -1,8 +1,9 @@
 name: Build and upload charts
-  env:
-    REPO_URL: ${{ secrets.REPO_URL }}
-    USER: ${{ secrets.USER }}
-    PASS: ${{ secrets.PASS }}
+
+env:
+  REPO_URL: ${{ secrets.REPO_URL }}
+  USER: ${{ secrets.USER }}
+  PASS: ${{ secrets.PASS }}
 
 on:
   push:
