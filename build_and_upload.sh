@@ -18,6 +18,7 @@ for CHART in $(ls charts/stable); do
         helm dependency update charts/stable/${CHART}/
         helm package charts/stable/${CHART}/
         curl --data-binary "@${CHART}-${VERSION}.tgz" ${REPO_URL}/api/charts -u ${USER}:${PASS}
+        rm "${CHART}-${VERSION}.tgz"
     else
         echo "Chart ${CHART} version ${VERSION} already exists in ${REPO_URL}, skipping."
     fi
