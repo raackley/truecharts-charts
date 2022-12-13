@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e
+set -ex
 
 for CHART in $(ls charts/stable); do
     echo "#####"
     echo "Chart: ${CHART}"
-    VERSION=$(cat charts/stable/${CHART}/Chart.yaml | grep version: | cut -d' ' -f2)
+    VERSION=$(cat charts/stable/${CHART}/Chart.yaml | grep version: | cut -d' ' -f2 | tr -d [:cntrl:])
     echo "Version: ${VERSION}"
 
     set +e
