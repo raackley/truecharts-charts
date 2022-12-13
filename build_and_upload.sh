@@ -15,13 +15,10 @@ for CHART in $(ls charts/stable); do
 
     if [ $CHECK_VERSION -ne 0 ]; then
         echo "Building and uploading chart ${CHART} version ${VERSION} to ${REPO_URL}."
-        #helm dependency update charts/stable/${CHART}/
-        #helm package charts/stable/${CHART}/
-        #curl --data-binary "@${CHART}-${VERSION}.tgz" ${REPO_URL}/api/charts -u ${USER}:${PASS}
-        #rm "${CHART}-${VERSION}.tgz"
-        echo $REPO_URL | wc -c
-        echo $USER | wc -c
-        echo $PASS | wc -c
+        helm dependency update charts/stable/${CHART}/
+        helm package charts/stable/${CHART}/
+        curl --data-binary "@${CHART}-${VERSION}.tgz" ${REPO_URL}/api/charts -u ${USER}:${PASS}
+        rm "${CHART}-${VERSION}.tgz"
     else
         echo "Chart ${CHART} version ${VERSION} already exists in ${REPO_URL}, skipping."
     fi
