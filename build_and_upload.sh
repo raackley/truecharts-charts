@@ -2,7 +2,7 @@
 
 set -e
 
-for CHART in $(ls charts); do
+for CHART in $(ls charts/stable); do
     echo "#####"
     echo "Chart: ${CHART}"
     VERSION=$(cat charts/${CHART}/Chart.yaml | grep version: | cut -d' ' -f2)
